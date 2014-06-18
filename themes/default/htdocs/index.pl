@@ -581,8 +581,14 @@ sub displayStories {
 #       my $user_maxstories = $user->{maxstories};
 # Here, maxstories should come from the skin, and $cnt should be
 # named minstories and that should come from the skin too.
-	my $user_maxstories = getCurrentAnonymousCoward("maxstories");
-	my $cnt = $gSkin->{artcount_min};
+	my $user_maxstories = $user->{maxstories};
+	my $cnt;
+	if ($user->{maxstories}/3 > $gSkin->{artcount_min}) {
+		$cnt = int($user->{maxstories}/3);
+	} else {
+		$cnt = $gSkin->{artcount_min};
+	}
+	
 	my($return, $counter);
 
 	# get some of our constant messages but do it just once instead

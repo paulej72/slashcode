@@ -3008,6 +3008,12 @@ sub saveHome {
 	my $story_brief_best_nexus	= checkList(join ",", @story_brief_best_nexus);
 	my $story_full_best_nexus	= checkList(join ",", @story_full_best_nexus);
 	
+	my $maxstories;
+	if ($form->{maxstories} =~ /^\d+?$/) {
+		$maxstories = int($form->{maxstories});
+	} else {
+		$maxstories = 30;
+	}
 
 	my $user_edits_table = {
 		story_never_topic		=> $story_never_topic,
@@ -3023,7 +3029,7 @@ sub saveHome {
 
 		slashboxes	=> checkList($slashboxes, 1024),
 
-		maxstories	=> 30, # XXXSKIN fix this later
+		maxstories	=> $maxstories,
 		noboxes		=> ($form->{useslashboxes} ? 0 : 1),
 		lowbandwidth	=> ($form->{lowbandwidth} ? 1 : 0),
 		simpledesign	=> ($form->{simpledesign} ? 1 : 0),
