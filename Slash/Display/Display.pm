@@ -362,6 +362,7 @@ my $strip_mode = sub {
 	strip_literal		=> \&strip_literal,
 	strip_nohtml		=> \&strip_nohtml,
 	strip_notags		=> \&strip_notags,
+	strip_encodetags		=> \&strip_encodetags,
 	strip_plaintext		=> \&strip_plaintext,
 	strip_mode		=> [ $strip_mode, 1 ],
 	%FILTERS
