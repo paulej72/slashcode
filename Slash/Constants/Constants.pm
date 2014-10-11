@@ -163,7 +163,7 @@ change Slash::Data::strip_mode() to allow the new value.
 
 	ANCHOR
 	NOTAGS
-  ENCODETAGS
+	ENCODETAGS
 	ATTRIBUTE
 	LITERAL
 	NOHTML
