@@ -22,7 +22,7 @@ sub main {
 	
 	slashProfInit();
 
-	$form->{subj} = encode_html_ltgt($form->{subj}) if $form->{subj};
+	$form->{subj} = strip_encodetags($form->{subj}) if $form->{subj};
 	
 	my @redirect_ops;
 
@@ -228,7 +228,7 @@ sub previewForm {
 	my $admin_flag = $user->{seclev} >= 100 ? 1 : 0;
 
 	my $sub = $slashdb->getSubmission($form->{subid});
-	$sub->{subj} = encode_html_ltgt($sub->{subj});
+	$sub->{subj} = strip_encodetags($sub->{subj});
 	
 	$slashdb->updateSubMemory($form->{submatch}, $form->{subnote}) if $form->{submatch} && $user->{is_admin};
 	my($sub_memory, $subnotes_ref);

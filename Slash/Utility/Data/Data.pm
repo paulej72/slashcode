@@ -129,6 +129,7 @@ our @EXPORT  = qw(
 	strip_mode
 	strip_nohtml
 	strip_notags
+	strip_encodetags
 	strip_plaintext
 	strip_paramattr
 	strip_paramattr_nonhttp
@@ -1427,6 +1428,10 @@ my %mode_actions = (
 			remove_ltgt
 			approveCharrefs
 			approve_unicode		)],
+	ENCODETAGS,[qw(
+			newline_to_local
+			encode_html_ltgt
+			approve_unicode		)],
 	ATTRIBUTE, [qw(
 			newline_to_local
 			encode_html_amp
@@ -1435,7 +1440,7 @@ my %mode_actions = (
 			approve_unicode		)],
 	LITERAL, [qw(
 			newline_to_local
-			encode_html_amp
+			encode_html_amp_ifnotent
 			encode_html_ltgt
 			remove_trailing_lts
 			approveTags
@@ -1477,7 +1482,7 @@ my %mode_actions = (
 	CODE, [qw(
 			newline_to_local
 			trailing_whitespace
-			encode_html_amp
+			encode_html_amp_ifnotent
 			encode_html_ltgt
 			whitespace_tagify
 			whitespace_and_tt
@@ -1485,7 +1490,7 @@ my %mode_actions = (
 	EXTRANS, [qw(
 			newline_to_local
 			trailing_whitespace
-			encode_html_amp
+			encode_html_amp_ifnotent
 			encode_html_ltgt
 			whitespace_tagify
 			newline_indent
@@ -1528,6 +1533,8 @@ sub stripByMode {
 
 =head2 strip_notags(STRING [, NO_WHITESPACE_FIX])
 
+=head2 strip_encodetags(STRING [, NO_WHITESPACE_FIX])
+
 =head2 strip_plaintext(STRING [, NO_WHITESPACE_FIX])
 
 =head2 strip_mode(STRING [, MODE, NO_WHITESPACE_FIX])
@@ -1557,6 +1564,7 @@ sub strip_html		{ stripByMode($_[0], HTML,	@_[1 .. $#_]) }
 sub strip_literal	{ stripByMode($_[0], LITERAL,	@_[1 .. $#_]) }
 sub strip_nohtml	{ stripByMode($_[0], NOHTML,	@_[1 .. $#_]) }
 sub strip_notags	{ stripByMode($_[0], NOTAGS,	@_[1 .. $#_]) }
+sub strip_encodetags	{ stripByMode($_[0], ENCODETAGS,	@_[1 .. $#_]) }
 sub strip_plaintext	{ stripByMode($_[0], PLAINTEXT,	@_[1 .. $#_]) }
 
 sub determine_html_format {
