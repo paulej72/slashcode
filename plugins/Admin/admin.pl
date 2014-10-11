@@ -1119,6 +1119,7 @@ sub editStory {
 	# XXXSKIN - ???
 	my $section = $user->{section} || $form->{section} || $constants->{defaultsection};
 
+	$form->{title} = strip_attribute($form->{title}) if $form->{title};
 	for (keys %{$form}) { $storyref->{$_} = $form->{$_} }
 
 	my $newarticle = 1 if !$stoid && !$form->{stoid} && !$form->{sid};
@@ -1133,7 +1134,6 @@ sub editStory {
 	# if that tells us, then sure - pudge
 	
 	if ($form->{title}) {
-		$form->{title} = strip_encodetags($form->{title});
 
 		my $storyskin = $gSkin;
 		$storyskin = $slashdb->getSkin($form->{skin}) if $form->{skin};
@@ -1279,7 +1279,6 @@ sub editStory {
 	}
 
 	if ($storyref->{title}) {
-		$storyref->{title} = strip_encodetags($storyref->{title});
 		my $oldskin = $gSkin->{skid};
 		setCurrentSkin($storyref->{primaryskid});
 		# Do we want to

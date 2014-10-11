@@ -1434,7 +1434,7 @@ my %mode_actions = (
 			approve_unicode		)],
 	ATTRIBUTE, [qw(
 			newline_to_local
-			encode_html_amp
+			encode_html_amp_ifnotent
 			encode_html_ltgt
 			encode_html_quote
 			approve_unicode		)],

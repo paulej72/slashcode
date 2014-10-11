@@ -22,7 +22,6 @@ sub main {
 	
 	slashProfInit();
 
-	$form->{subj} = strip_encodetags($form->{subj}) if $form->{subj};
 	
 	my @redirect_ops;
 
@@ -74,7 +73,7 @@ sub main {
 	# so leave it here until you really know what you
 	# are doing -- pudge
 	$form->{from}   = strip_attribute($form->{from})  if $form->{from};
-	$form->{subj}   = strip_anchor($form->{subj})  if $form->{subj};
+	$form->{subj}   = strip_attribute($form->{subj})  if $form->{subj};
 	$form->{email}  = strip_attribute($form->{email}) if $form->{email};
 	$form->{name}   = strip_nohtml($form->{name})     if $form->{name};
 
