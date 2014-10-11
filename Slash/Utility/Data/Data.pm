@@ -1428,7 +1428,7 @@ my %mode_actions = (
 			remove_ltgt
 			approveCharrefs
 			approve_unicode		)],
-	ENCODETAGS,[qw(
+	ENCODETAGS, [qw(
 			newline_to_local
 			encode_html_ltgt
 			approve_unicode		)],
